@@ -1,0 +1,131 @@
+/* === Card Container === */
+.card-wrapper {
+  width: 100%;
+  max-width: 80%;
+  margin: 20px;
+  background-color: #2a3a33;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  margin-left: 10rem;
+}
+
+.card {
+  background-color: #2f4f3f;
+  color: #d0f5e3;
+  border: none;
+  border-radius: 12px;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(100, 255, 150, 0.2);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* === Supervisor Info === */
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #7be88f;
+}
+
+.assignment-date {
+  font-size: 0.8rem;
+  color: #a1bfa6;
+}
+
+/* === Assignment Content === */
+.assignment-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #aef7c2;
+}
+
+.assignment-description {
+  font-size: 1rem;
+  color: #cceedd;
+  margin-top: 6px;
+}
+
+/* === Comment Input Area === */
+.comment-input-wrapper {
+  margin-top: 15px;
+  position: relative;
+}
+
+.comment-textarea {
+  resize: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #e9f5ec;
+  border: 1px solid #b4e7c3;
+  color: #1d2b22;
+}
+
+.send-comment-btn {
+  margin-top: 10px;
+  background-color: #60d394;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.send-comment-btn:hover {
+  background-color: #4ac481;
+}
+
+/* === Comments Section === */
+.comment-wrapper {
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #3b5144;
+  border-radius: 10px;
+}
+
+.comment-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.comment-user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #aef4c4;
+  object-fit: cover;
+}
+
+.comment-text {
+  font-size: 0.95rem;
+  color: #e5f5eb;
+}
+
+/* === Responsive Button Link === */
+button.btn-link {
+  color: #80f2a0;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+button.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* === Utilities === */
+.text-muted {
+  color: #b6cdbf !important;
+}
+.comment-textarea::placeholder {
+  color: #5a7d6a; /* Muted green or dark gray-green */
+  opacity: 1; /* Make sure it's fully visible */
+}

@@ -1,0 +1,88 @@
+/* Studentsidebar.css */
+
+:root {
+  --primary-green: #27ae60;
+  --dark-green: #1e8449;
+  --light-green: #d5f5e3;
+  --hover-bg: #2ecc71;
+  --text-color: #fff;
+  --bg-color: #1c1f1d;
+}
+
+#sidebar {
+  width: 250px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  position: fixed;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-responsive {
+  left: 0;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--primary-green);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.close_icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-list-item {
+  padding: 15px 20px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar-list-item a {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.sidebar-list-item:hover {
+  background-color: var(--hover-bg);
+}
+
+.sidebar-list-item span {
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--light-green);
+}
+
+.icon_header {
+  color: #fff;
+  font-size: 24px;
+}

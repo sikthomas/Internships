@@ -1,0 +1,72 @@
+.appform-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f5f6fa;
+}
+
+.appform-card {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.appform-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.appform-input {
+  margin-bottom: 1rem;
+}
+
+.appform-inputbox {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.appform-error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.appform-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.appform-button:hover {
+  background-color: #2980b9;
+}
+.appform-success {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.appform-loading {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.appform-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
