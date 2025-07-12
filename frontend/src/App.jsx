@@ -15,6 +15,7 @@ import ApplicantList from './assets/ApplicantList';
 import ApplicationForm from './assets/ApplicationForm';
 import PasswordResetRequest from './assets/PasswordResetRequest';
 import ApprovedList from './assets/ApprovedList';
+import Home1 from './assets/Home1';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/approvedlist" element={< ApprovedList/>} />
         <Route path="/" element={<Index/>} />
         <Route path="/passwordreset" element={<PasswordResetRequest/>} />
+        <Route path="/home1" element={<Home1/>} />
       </Routes>
     </Router>
   );

@@ -9,7 +9,7 @@ const Login = (props) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false); // NEW: loading spinner state
+  const [loading, setLoading] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -73,8 +73,11 @@ const Login = (props) => {
 
         if (userType === 'student') {
           navigate('/studenthome');
-        } else {
+        } else if(userType === 'supervisor'){
           navigate('/home');
+        }
+        else{
+          navigate('/home1');
         }
       } else {
         setErrorMessage('Invalid response from server. No tokens found.');

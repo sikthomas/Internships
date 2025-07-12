@@ -46,18 +46,9 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                     <BsPersonCheck className='icon'/> Approved
                 </a>
             </li>
+           
             <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillRocketTakeoffFill className='icon'/> In Progress
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <TiTabsOutline className='icon'/> Completed
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-               <Link to="/logout">
+               <Link to="/">
                     <CiLogout className='icon'/> Logout
                 </Link>
             </li>

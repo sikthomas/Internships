@@ -211,7 +211,7 @@ def assign_tasks(request, id):
 @permission_classes([IsAuthenticated])
 def get_assignedtasks(request):
     userr=request.user
-    if userr.user_type=='supervisor':
+    if userr.user_type=='supervisor' or userr.user_type=='lecturer' :
         tasks = AssignTask.objects.all()
     else:
         tasks = AssignTask.objects.filter(approved_id__applicant_id__student_id=userr)

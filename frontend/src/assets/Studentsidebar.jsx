@@ -71,7 +71,7 @@ function Studentsidebar({ openSidebarToggle, OpenSidebar }) {
                 </li>
 
                 <li className='sidebar-list-item'>
-                    <Link to="/logout">
+                    <Link to="/">
                         <CiLogout className='icon' /> Logout
                     </Link>
                 </li>

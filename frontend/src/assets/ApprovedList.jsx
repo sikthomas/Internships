@@ -99,7 +99,6 @@ function ApprovedList() {
                 <th>Program</th>
                 <th>University</th>
                 <th>Application Date</th>
-                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -111,7 +110,6 @@ function ApprovedList() {
                   <td>{applicant.student.program}</td>
                   <td>{applicant.student.university_name}</td>
                   <td>{new Date(applicant.student.application_date).toLocaleDateString()}</td>
-                  <td>{applicant.status}</td>
                   <td>
                     <button
                       onClick={() => {
