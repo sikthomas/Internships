@@ -4,10 +4,10 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-from .serializers import RegisterSerializer, LoginSerializer,UserSerializer,RoleSerializer,UserRoleList,ApplicationSerializer,ApplicantSerializer,ApproveSerializer,ContactForm,AssignTaskSerializer,GetApprovedSerializer,CommentsSerializer,AssignTasksSerializer,CommentSerializer
+from .serializers import RegisterSerializer, LoginSerializer,UserSerializer,RoleSerializer,UserRoleList,ApplicationSerializer,ApplicantSerializer,ApproveSerializer,ContactForm,AssignTaskSerializer,GetApprovedSerializer,CommentsSerializer,AssignTasksSerializer,CommentSerializer,ReportSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny,IsAuthenticated
-from .models import CustomUser,UserRole,Application,Approvestudent,Comments,AssignTask
+from .models import CustomUser,UserRole,Application,Approvestudent,Comments,AssignTask,Report
 from rest_framework.authtoken.models import Token
 from django.utils import timezone
 from rest_framework.exceptions import AuthenticationFailed
@@ -261,8 +261,41 @@ def post_comment(request):
     serializer = CommentsSerializer(comment, context={'request': request})
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def post_report(request):
+    assignment_id = request.data.get('assignmentId')
+    comment_text = request.data.get('comment')
+    score = request.data.get('score')
+
+    if not assignment_id or not comment_text or score is None:
+        return Response(
+            {"error": "assignmentId, comment, and score are required"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    try:
+        assignment = AssignTask.objects.get(id=assignment_id)
+    except AssignTask.DoesNotExist:
+        return Response({"error": "Assignment not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    # Create the Report
+    report = Report.objects.create(
+        assignmentId=assignment,
+        comment=comment_text,
+        score=score,
+        commented_by=request.user
+    )
+
+    # Update the AssignTask's is_rated field
+    assignment.is_rated = True
+    assignment.save()
+
+    serializer = ReportSerializer(report, context={'request': request})
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def contactus(request):

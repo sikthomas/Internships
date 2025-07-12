@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .views import signup_api,login_api,users_api,logout_api,assign_role_api,user_role_list,roles_choices,apply_internship,applicants_list,applicant_detail,approve_students,contactus,get_approved_list,assign_tasks,get_assignedtasks,post_comment,view_comment
+from .views import signup_api,login_api,users_api,logout_api,assign_role_api,user_role_list,roles_choices,apply_internship,applicants_list,applicant_detail,approve_students,contactus,get_approved_list,assign_tasks,get_assignedtasks,post_comment,view_comment,post_report
 
 urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('assignedtasks/', get_assignedtasks, name='assignedtasks'),
      path('sendcomment/', post_comment, name='sendcomment'),
     path('viewcomment/', view_comment, name='viewcomment'),
+    path('postreport/', post_report, name='postreport'),
     path('contactus/', contactus, name='contactus'),
     path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset'))
 

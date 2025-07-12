@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
-from .models import CustomUser,UserRole,Application,Approvestudent,Contact,AssignTask,Comments
+from .models import CustomUser,UserRole,Application,Approvestudent,Contact,AssignTask,Comments,Report
 from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
 
@@ -205,7 +205,7 @@ class AssignTaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AssignTask
-        fields = ['id', 'supervisor', 'student', 'assignment_title', 'assignment_description', 'assigned_date']
+        fields = ['id', 'supervisor', 'student', 'assignment_title', 'assignment_description', 'assigned_date','is_rated']
         read_only_fields = ['supervisor', 'assigned_date']
 
     def get_supervisor(self, obj):
@@ -271,6 +271,13 @@ class CommentSerializer(serializers.ModelSerializer):
         else:
             default_image_path = 'profile_images/no-image.jpg'
             return request.build_absolute_uri(f"/api{settings.MEDIA_URL}{default_image_path}")
+        
+class ReportSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model=Report  
+        fields=['assignmentId','comment','score','commented_by','commented_at']
+        read_only_fields = ['commented_by', 'commented_at']
 
 
 class ContactForm(serializers.ModelSerializer):

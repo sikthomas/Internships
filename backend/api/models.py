@@ -46,12 +46,15 @@ class AssignTask(models.Model):
     assignment_title = models.CharField(max_length=30)
     assignment_description = models.TextField()
     assigned_date = models.DateField(auto_now_add=True)
+    is_rated=models.BooleanField(default=False)
+
 
 class Comments(models.Model):
     assignmentId=models.ForeignKey(AssignTask,on_delete=models.CASCADE)
     comment=models.TextField()
     commented_by=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     commented_at=models.DateTimeField(auto_now_add=True)
+   
 
 class Contact(models.Model):
     name = models.CharField(max_length=50) 
@@ -59,8 +62,14 @@ class Contact(models.Model):
     message = models.TextField()
     send_date=models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Message from {self.name}"
+class Report(models.Model):
+    assignmentId=models.ForeignKey(AssignTask,on_delete=models.CASCADE)
+    comment=models.TextField()
+    score=models.PositiveIntegerField()
+    commented_by=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    commented_at=models.DateTimeField(auto_now_add=True)
+
+
     
 
 @receiver(reset_password_token_created)
