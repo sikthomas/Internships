@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { IoMdDoneAll } from "react-icons/io";
 import Studentdashboard from './Studentdashboard';
@@ -66,10 +67,8 @@ function Studenthome() {
   const toggleComments = async (assignmentId) => {
     const isVisible = visibleComments[assignmentId];
     if (isVisible) {
-      // If already visible, hide
       setVisibleComments(prev => ({ ...prev, [assignmentId]: false }));
     } else {
-      // Show and fetch if not already loaded
       if (!comments[assignmentId]) {
         await fetchComments(assignmentId);
       }
@@ -141,56 +140,63 @@ function Studenthome() {
                         <div className="assignment-description">{assignment.assignment_description}</div>
                       </div>
 
-                                            {/* Load Comments Button */}
-                      {commentCounts[assignment.id] > 0 && (
-                        <div className="mt-3">
-                          <button
-                            className="btn btn-link p-0"
-                            onClick={() => toggleComments(assignment.id)}
-                          >
-                            {visibleComments[assignment.id] ? 'Hide Responses' : 'Responses'} (
-                            <span style={{ color: commentCounts[assignment.id] > 0 ? 'red' : 'inherit' }}>
-                              {commentCounts[assignment.id]}
-                            </span>
-                            )
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Comments List */}
-                      {visibleComments[assignment.id] && (
-                        <div className="mt-3 border-top pt-2">
-                          {(comments[assignment.id] || []).map((c, idx) => (
-                            <div key={idx} className="comment-wrapper">
-                              <div className="comment-user">
-                                <img src={c.commented_by.profile_photo_url} alt="user" />
-                                <strong>{c.commented_by.first_name} {c.commented_by.last_name}</strong>
-                                <small className="ms-2 text-muted">{new Date(c.commented_at).toLocaleString()}</small>
-                              </div>
-                              <div className="comment-text">{c.comment}</div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      
-
-                      <div className="mt-3 comment-input-wrapper">
-                        <textarea
-                          className="form-control comment-textarea"
-                          rows="2"
-                          placeholder="Write a Response..."
-                          value={newComment[assignment.id] || ''}
-                          onChange={(e) => handleCommentChange(assignment.id, e.target.value)}
-                        />
-                        <button
-                          className="send-comment-btn"
-                          onClick={() => sendComment(assignment.id)}
-                        >
-                          Send
-                        </button>
+                      {assignment.is_rated ? (
+                       <div className="mt-3 text-success fw-bold d-flex align-items-center">
+                        <input type="checkbox" checked readOnly className="form-check-input me-2" />
+                        <em>This assignment is rated</em>
                       </div>
+                      ) : (
+                        <>
+                          {/* Load Comments Button */}
+                          {commentCounts[assignment.id] > 0 && (
+                            <div className="mt-3">
+                              <button
+                                className="btn btn-link p-0"
+                                onClick={() => toggleComments(assignment.id)}
+                              >
+                                {visibleComments[assignment.id] ? 'Hide Responses' : 'Responses'} (
+                                <span style={{ color: commentCounts[assignment.id] > 0 ? 'red' : 'inherit' }}>
+                                  {commentCounts[assignment.id]}
+                                </span>
+                                )
+                              </button>
+                            </div>
+                          )}
 
+                          {/* Comments List */}
+                          {visibleComments[assignment.id] && (
+                            <div className="mt-3 border-top pt-2">
+                              {(comments[assignment.id] || []).map((c, idx) => (
+                                <div key={idx} className="comment-wrapper">
+                                  <div className="comment-user">
+                                    <img src={c.commented_by.profile_photo_url} alt="user" />
+                                    <strong>{c.commented_by.first_name} {c.commented_by.last_name}</strong>
+                                    <small className="ms-2 text-muted">{new Date(c.commented_at).toLocaleString()}</small>
+                                  </div>
+                                  <div className="comment-text">{c.comment}</div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
 
+                          {/* Comment Input */}
+                          <div className="mt-3 comment-input-wrapper">
+                            <textarea
+                              className="form-control comment-textarea"
+                              rows="2"
+                              placeholder="Write a Response..."
+                              value={newComment[assignment.id] || ''}
+                              onChange={(e) => handleCommentChange(assignment.id, e.target.value)}
+                            />
+                            <button
+                              className="send-comment-btn"
+                              onClick={() => sendComment(assignment.id)}
+                            >
+                              Send
+                            </button>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

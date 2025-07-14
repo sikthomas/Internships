@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BsFillGrid3X3GapFill, BsPeopleFill, BsBoxes, BsBorderWidth, BsArrowsMove } from 'react-icons/bs';
+import { BsFillGrid3X3GapFill, BsPeopleFill, BsBoxes, BsBorderWidth, BsArrowsMove, BsPersonCheck } from 'react-icons/bs';
 import { CiLogout } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 
@@ -68,6 +68,12 @@ function Studentsidebar({ openSidebarToggle, OpenSidebar }) {
                     <Link to="">
                         <BsArrowsMove className='icon' /> Status
                     </Link>
+                </li>
+
+                <li className='sidebar-list-item'>
+                    <a href="/studentreports">
+                        <BsPersonCheck className='icon'/> Report
+                    </a>
                 </li>
 
                 <li className='sidebar-list-item'>

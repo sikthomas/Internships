@@ -286,5 +286,34 @@ class ContactForm(serializers.ModelSerializer):
         fields = ['name', 'email', 'message', 'send_date']
         read_only_fields = ['send_date']
 
+class GetReportSerializer(serializers.ModelSerializer):
+    student = serializers.SerializerMethodField()
+    assignment_title = serializers.CharField(source='assignmentId.assignment_title', read_only=True)
 
+    class Meta:
+        model = Report
+        fields = ['id', 'assignmentId', 'assignment_title', 'comment', 'score', 'commented_by', 'commented_at', 'student']
 
+    def get_student(self, obj):
+        try:
+            assign_task = obj.assignmentId
+            approved = assign_task.approved_id
+            application = approved.applicant_id
+            student = application.student_id
+
+            return {
+                'id': student.id,
+                'first_name': student.first_name,
+                'last_name': student.last_name,
+                'email': student.email,
+                'profile_photo_url': self.get_profile_photo_url(student)
+            }
+
+        except Exception:
+            return None
+
+    def get_profile_photo_url(self, user):
+        request = self.context.get('request')
+        if user.profile_photo and hasattr(user.profile_photo, 'url'):
+            return request.build_absolute_uri(user.profile_photo.url) if request else user.profile_photo.url
+        return None

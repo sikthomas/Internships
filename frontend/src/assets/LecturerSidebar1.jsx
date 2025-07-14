@@ -22,6 +22,13 @@ function LecturerSidebar({openSidebarToggle, OpenSidebar}) {
             </li>
 
             <li className='sidebar-list-item'>
+              <Link to="/lecturerreports">
+                    <BsBorderWidth className='icon'/>Lecturer Dashboard
+              </Link>
+            </li>
+
+
+            <li className='sidebar-list-item'>
                <Link to="/">
                     <CiLogout className='icon'/> Logout
                 </Link>

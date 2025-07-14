@@ -46,6 +46,12 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                     <BsPersonCheck className='icon'/> Approved
                 </a>
             </li>
+
+            <li className='sidebar-list-item'>
+                <a href="/reports">
+                    <BsPersonCheck className='icon'/> Reports
+                </a>
+            </li>
            
             <li className='sidebar-list-item'>
                <Link to="/">

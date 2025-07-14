@@ -1,131 +1,221 @@
-/* === Card Container === */
+
 .card-wrapper {
-  width: 100%;
-  max-width: 80%;
-  margin: 20px;
-  background-color: #2a3a33;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
-  margin-left: 10rem;
+  width: 60%;
+  margin-bottom: 1rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+    border: 1px solid #28a745; /* Thin green border */
+  border-radius: 12px;        /* Optional: matches card rounding */
+  padding: 1rem;              /* Optional: adds breathing space */
+  background-color: white; 
 }
 
 .card {
-  background-color: #2f4f3f;
-  color: #d0f5e3;
-  border: none;
-  border-radius: 12px;
-}
-
-.card:hover {
-  box-shadow: 0 6px 12px rgba(100, 255, 150, 0.2);
+  border-radius: 1rem;
+  background-color: #f9f9f9;
 }
 
 .card-body {
-  padding: 20px;
+  padding: 1rem;
 }
 
-/* === Supervisor Info === */
 .user-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
-  border: 2px solid #7be88f;
+  border-radius: 50%;
 }
 
-.assignment-date {
-  font-size: 0.8rem;
-  color: #a1bfa6;
-}
-
-/* === Assignment Content === */
 .assignment-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #aef7c2;
+  font-weight: 600;
+  font-size: 1.25rem;
 }
 
 .assignment-description {
-  font-size: 1rem;
-  color: #cceedd;
-  margin-top: 6px;
+  font-size: 1.2rem;
+  color: #6c757d;
 }
 
-/* === Comment Input Area === */
-.comment-input-wrapper {
-  margin-top: 15px;
-  position: relative;
+.assignment-date {
+  font-size: 0.75rem;
+  color: #888;
 }
 
-.comment-textarea {
-  resize: none;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #e9f5ec;
-  border: 1px solid #b4e7c3;
-  color: #1d2b22;
-}
-
-.send-comment-btn {
-  margin-top: 10px;
-  background-color: #60d394;
-  color: #ffffff;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.send-comment-btn:hover {
-  background-color: #4ac481;
-}
-
-/* === Comments Section === */
+/* Comment Section */
 .comment-wrapper {
-  padding: 10px;
   margin-top: 10px;
-  background-color: #3b5144;
-  border-radius: 10px;
+  padding-left: 1rem;
+  border-left: 2px solid #ccc;
 }
 
 .comment-user {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .comment-user img {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
-  border: 1px solid #aef4c4;
   object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .comment-text {
+  font-size: 1.2rem;
+  color: #333;
+  background: #6c757d;
+  padding: 0.5rem;
+  border-radius: 10px;
+  max-width: 85%;
+}
+.comment-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.comment-textarea {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
   font-size: 0.95rem;
-  color: #e5f5eb;
+  resize: vertical;
 }
 
-/* === Responsive Button Link === */
-button.btn-link {
-  color: #80f2a0;
-  font-weight: bold;
-  text-decoration: none;
+.send-comment-btn {
+  margin-top: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
-button.btn-link:hover {
-  text-decoration: underline;
+.send-comment-btn:hover {
+  background-color: #0056b3;
+}
+/* Filter section */
+.search-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  width: 60%; /* Leaves 20% margin on both sides */
+  gap: 10px;
+  flex-wrap: nowrap;
+  border-radius: 20px;
+  border-color: green;
 }
 
-/* === Utilities === */
-.text-muted {
-  color: #b6cdbf !important;
+.search-filter-bar input,
+.search-filter-bar button {
+  height: 40px;
+  font-size: 14px;
 }
-.comment-textarea::placeholder {
-  color: #5a7d6a; /* Muted green or dark gray-green */
-  opacity: 1; /* Make sure it's fully visible */
+
+.search-filter-bar input[type="text"] {
+  flex: 2;
 }
+
+.search-filter-bar input[type="date"] {
+  flex: 1.5;
+}
+
+.search-filter-bar button {
+  flex: 1;
+  background-color: #2e8b57;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-filter-bar button:hover {
+  background-color: #1e90ff;
+}
+/* Modal styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.modal-content h4 {
+  margin-bottom: 1rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modal-content .btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content .btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.modal-content .btn-success:hover {
+  background-color: #218838;
+}
+
+.modal-content .btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.modal-content .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Report button next to send */
+.rate-assignment-btn {
+  background-color: #ffc107;
+  border: none;
+  color: black;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.rate-assignment-btn:hover {
+  background-color: #e0a800;
+}
+
+
+

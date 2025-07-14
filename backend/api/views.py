@@ -4,7 +4,7 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-from .serializers import RegisterSerializer, LoginSerializer,UserSerializer,RoleSerializer,UserRoleList,ApplicationSerializer,ApplicantSerializer,ApproveSerializer,ContactForm,AssignTaskSerializer,GetApprovedSerializer,CommentsSerializer,AssignTasksSerializer,CommentSerializer,ReportSerializer
+from .serializers import RegisterSerializer, LoginSerializer,UserSerializer,RoleSerializer,UserRoleList,ApplicationSerializer,ApplicantSerializer,ApproveSerializer,ContactForm,AssignTaskSerializer,GetApprovedSerializer,CommentsSerializer,AssignTasksSerializer,CommentSerializer,ReportSerializer,GetReportSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from .models import CustomUser,UserRole,Application,Approvestudent,Comments,AssignTask,Report
@@ -227,12 +227,6 @@ def get_tasks_assigned_to_me(request,approved_id):
     serializer=AssignTaskSerializer(tasks,many=True)
     return Response(serializer.data,status=status.HTTP_200_OK)
 
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from .models import Comments, AssignTask
-from .serializers import CommentSerializer
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -306,3 +300,18 @@ def contactus(request):
             return Response(serilaizer.data, status=status.HTTP_201_CREATED)
     return Response(serilaizer.errors,status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_report(request):
+    user = request.user
+
+    if user.user_type in ['supervisor', 'lecturer']:
+        reports = Report.objects.all()
+    else:
+        reports = Report.objects.filter(
+            assignmentId__approved_id__applicant_id__student_id=user
+        )
+
+    serializer = GetReportSerializer(reports, many=True, context={'request': request})
+    return Response(serializer.data, status=status.HTTP_200_OK)
